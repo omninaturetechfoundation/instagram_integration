@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>My Instagram Posts</title>
+<link rel="stylesheet" href="css/insta.css">
+
+</head>
+<body>
+  <header>
+    <nav class="nice">
+      <div class="nav-wrapper container">
+        <a href="#" class="brand-logo">Our Insta Blog</a>
+			        <div class="nav-toggle">
+        <label class="switch">
+          <input type="checkbox" id="dark-mode-toggle">
+          <span class="slider round"></span>
+        </label>
+      </div>
+      </div>
+    </nav>
+  </header>
+  <main class="container">
+    <div class="row">
+      <div class="col s12">
+        <div class="card">
+          <div class="card-content">
+            <h4>Posts</h4>
+            <div class="embedded-post" id="embedded-posts">
+              <!-- Posts will be dynamically added here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+        // Array of Instagram post URLs to embed
+        const instagramPostUrls = [
+            'https://www.instagram.com/p/CwUrFKvy--f/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==',
+            'https://www.instagram.com/p/CwUrFKvy--f/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==',
+            // Add more URLs as needed
+        ];
+
+        // Function to embed Instagram posts
+        function embedInstagramPosts() {
+            const embeddedPostsContainer = document.getElementById('embedded-posts');
+            
+            instagramPostUrls.forEach(url => {
+                const instagramPostDiv = document.createElement('div');
+                instagramPostDiv.className = 'instagram-post';
+                
+                const blockquote = document.createElement('blockquote');
+                blockquote.className = 'instagram-media';
+                blockquote.setAttribute('data-instgrm-permalink', url);
+                blockquote.setAttribute('data-instgrm-version', '13');
+                
+                instagramPostDiv.appendChild(blockquote);
+                embeddedPostsContainer.appendChild(instagramPostDiv);
+            });
+
+            // Load Instagram embed script
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.instagram.com/embed.js';
+            embeddedPostsContainer.appendChild(script);
+        }
+
+        // Embed Instagram posts when the page loads
+        window.addEventListener('load', embedInstagramPosts);
+    </script>
+	<script src="js/nightmode.js"></script>
+</body>
+</html>
